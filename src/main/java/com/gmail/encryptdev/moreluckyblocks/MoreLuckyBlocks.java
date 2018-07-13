@@ -39,6 +39,10 @@ public class MoreLuckyBlocks extends JavaPlugin {
         if(!new File("settings.json").exists())
             saveResource("settings.json", false);
 
+        /**
+         * Test
+         */
+
         this.jsonLoader = new JsonLoader();
         this.jsonLoader.load();
         this.luckyBlockManager = new LuckyBlockManager(this.jsonLoader);
