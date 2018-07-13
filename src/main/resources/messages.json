@@ -1,0 +1,15 @@
+{
+  "_comment": "To disable the message just change the message to \"-\"",
+  "prefix": "&6&lLuckyBlocks &7>> &c",
+  "open-luckyblock": "You open the lucky block",
+  "inventory-names": {
+    "luckyblock-main": "&eLuckyBlock Manager",
+    "add-new-reward": "&eAdd new rewards"
+  },
+  "item-names": {
+    "add-new-reward": "&eAdd new rewards",
+    "add-structure": "&eAdd new structures",
+    "add-new-mob": "&eAdd a new mob where spawn",
+    "add-new-item": "&eAdd a new item where drop"
+  }
+}

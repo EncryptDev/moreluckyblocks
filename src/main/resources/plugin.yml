@@ -1,0 +1,7 @@
+name: MoreLuckyBlocks
+author: EncryptDev
+main: com.gmail.encryptdev.moreluckyblocks.MoreLuckyBlocks
+version: 1.0
+
+commands:
+  lb:

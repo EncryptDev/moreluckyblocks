@@ -1,0 +1,14 @@
+{
+  "luckyblock-recipe": {
+    "shape": {
+      "row-1": "GGG",
+      "row-2": "GDG",
+      "row-3": "GGG",
+      "ingredients": [
+        "G:GOLD_BLOCK",
+        "D:DIAMOND"
+      ]
+    },
+    "name": "&a&lLuckyBlock"
+  }
+}
