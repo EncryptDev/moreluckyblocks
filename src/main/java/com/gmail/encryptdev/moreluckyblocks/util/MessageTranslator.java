@@ -32,6 +32,10 @@ public class MessageTranslator {
         return translate((String) JSON_LOADER.getMessageFile().getJsonObject("item-names").get(key));
     }
 
+    public static String getSettingsString(String key) {
+        return translate((String) JSON_LOADER.getSettingsFile().getJsonObject("luckyblock-recipe").get(key));
+    }
+
     private static String translate(String toTranslate) {
         return ChatColor.translateAlternateColorCodes('&', toTranslate);
     }

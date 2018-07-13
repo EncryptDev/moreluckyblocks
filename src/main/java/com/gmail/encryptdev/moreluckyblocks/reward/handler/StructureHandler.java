@@ -44,4 +44,8 @@ public class StructureHandler implements IRewardHandler<Structure> {
         map.put("structure", structure);
         return map;
     }
+
+    public static StructureHandler deserialize(Map<String, Object> map) {
+        return new StructureHandler((Structure) map.get("structure"));
+    }
 }

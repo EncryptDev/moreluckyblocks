@@ -1,7 +1,7 @@
 package com.gmail.encryptdev.moreluckyblocks.commands;
 
 import com.gmail.encryptdev.moreluckyblocks.inventory.AbstractInventory;
-import com.gmail.encryptdev.moreluckyblocks.inventory.LuckyBlockInventory;
+import com.gmail.encryptdev.moreluckyblocks.inventory.AddNewRewardInventory;
 import com.gmail.encryptdev.moreluckyblocks.util.ItemCreator;
 import com.gmail.encryptdev.moreluckyblocks.util.MessageTranslator;
 import org.bukkit.Material;
@@ -19,7 +19,7 @@ public class CommandLuckyBlock extends ACommand {
             return;
 
         if(args.length == 0) {
-            AbstractInventory.openInventory(player, new LuckyBlockInventory());
+            AbstractInventory.openInventory(player, new AddNewRewardInventory());
         } else if(args.length == 1) {
             if(args[0].equalsIgnoreCase("help")) {
                 player.sendMessage("§6LuckyBlocks §7> Developer: EncryptDev");

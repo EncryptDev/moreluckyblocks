@@ -14,7 +14,8 @@ public class AddNewRewardInventory extends AbstractInventory {
         fill();
         this.bukkitInventory.setItem(10, ItemCreator.getItem(Material.DIAMOND_HOE, MessageTranslator.getItemName("add-structure")));
         this.bukkitInventory.setItem(11, ItemCreator.getItem(Material.SKULL_ITEM, MessageTranslator.getItemName("add-new-mob")));
-        this.bukkitInventory.setItem(12, ItemCreator.getItem(Material.APPLE, MessageTranslator.getItemName("add-new-item")));
+        this.bukkitInventory.setItem(15, ItemCreator.getItem(Material.APPLE, MessageTranslator.getItemName("add-new-item")));
+        this.bukkitInventory.setItem(16, ItemCreator.getItem(Material.COMMAND, MessageTranslator.getItemName("add-command")));
 
     }
 }

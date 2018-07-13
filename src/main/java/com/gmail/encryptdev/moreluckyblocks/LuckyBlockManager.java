@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ShapedRecipe;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,10 +21,14 @@ import java.util.Map;
  */
 public class LuckyBlockManager {
 
+    public static final String CC_STRUCTURE_NAME = "cc_structure_name";
+
+    private Map<Player, String> chatCommands;
     private JsonLoader jsonLoader;
 
     public LuckyBlockManager(JsonLoader jsonLoader) {
         this.jsonLoader = jsonLoader;
+        this.chatCommands = new HashMap<>();
     }
 
     public void init() {
@@ -62,7 +67,7 @@ public class LuckyBlockManager {
         }
 
 
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("custom_workbench"), ItemCreator.getItem(Material.PISTON_BASE,
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("custom_workbench"), ItemCreator.getItem(Material.getMaterial((String) customRecipeObj.get("output")),
                 ChatColor.translateAlternateColorCodes('&', (String) customRecipeObj.get("name"))));
         recipe.shape(rows);
         for (Character c : ingredientsMap.keySet())
@@ -71,4 +76,7 @@ public class LuckyBlockManager {
         Bukkit.addRecipe(recipe);
     }
 
+    public Map<Player, String> getChatCommands() {
+        return chatCommands;
+    }
 }

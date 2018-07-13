@@ -2,17 +2,18 @@ package com.gmail.encryptdev.moreluckyblocks;
 
 import com.gmail.encryptdev.moreluckyblocks.commands.CommandLuckyBlock;
 import com.gmail.encryptdev.moreluckyblocks.json.JsonLoader;
+import com.gmail.encryptdev.moreluckyblocks.listener.ChatListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.LuckyBlockBreakListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.LuckyBlockPlaceListener;
-import com.gmail.encryptdev.moreluckyblocks.reward.handler.IRewardHandler;
-import com.gmail.encryptdev.moreluckyblocks.reward.handler.SpawnItemHandler;
-import com.gmail.encryptdev.moreluckyblocks.reward.handler.SpawnMobHandler;
-import com.gmail.encryptdev.moreluckyblocks.reward.handler.StructureHandler;
+import com.gmail.encryptdev.moreluckyblocks.listener.inventory.AddNewRewardInventoryListener;
+import com.gmail.encryptdev.moreluckyblocks.listener.inventory.ListInventoryListener;
+import com.gmail.encryptdev.moreluckyblocks.mob.MobEquipment;
+import com.gmail.encryptdev.moreluckyblocks.mob.MobSettings;
+import com.gmail.encryptdev.moreluckyblocks.reward.handler.*;
 import com.gmail.encryptdev.moreluckyblocks.structure.Structure;
 import com.gmail.encryptdev.moreluckyblocks.structure.StructureLoader;
 import com.gmail.encryptdev.moreluckyblocks.util.Log;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,14 +35,10 @@ public class MoreLuckyBlocks extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        if(!new File("messages.json").exists())
+        if (!new File("messages.json").exists())
             saveResource("messages.json", false);
-        if(!new File("settings.json").exists())
+        if (!new File("settings.json").exists())
             saveResource("settings.json", false);
-
-        /**
-         * Test
-         */
 
         this.jsonLoader = new JsonLoader();
         this.jsonLoader.load();
@@ -73,16 +70,20 @@ public class MoreLuckyBlocks extends JavaPlugin {
         registerRewardHandler(SpawnItemHandler.class);
         registerRewardHandler(SpawnMobHandler.class);
         registerRewardHandler(StructureHandler.class);
+        registerRewardHandler(ExecuteCommandHandler.class);
 
         ConfigurationSerialization.registerClass(Structure.class);
-        ConfigurationSerialization.registerClass(SpawnMobHandler.MobSettings.class);
-        ConfigurationSerialization.registerClass(SpawnMobHandler.MobEquipment.class);
+        ConfigurationSerialization.registerClass(MobSettings.class);
+        ConfigurationSerialization.registerClass(MobEquipment.class);
     }
 
     private void registerListener() {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new LuckyBlockPlaceListener(), this);
         pluginManager.registerEvents(new LuckyBlockBreakListener(), this);
+        pluginManager.registerEvents(new ChatListener(luckyBlockManager), this);
+        pluginManager.registerEvents(new AddNewRewardInventoryListener(luckyBlockManager), this);
+        pluginManager.registerEvents(new ListInventoryListener(), this);
     }
 
     public void registerRewardHandler(Class<? extends IRewardHandler> aClass) {

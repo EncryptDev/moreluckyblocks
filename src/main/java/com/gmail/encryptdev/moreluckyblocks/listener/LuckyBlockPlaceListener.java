@@ -21,10 +21,10 @@ public class LuckyBlockPlaceListener implements Listener {
 
         if(StaticUtil.is1_8())
             res = player.getInventory().getItemInHand().hasItemMeta() &&
-                    player.getInventory().getItemInHand().getItemMeta().getDisplayName().equals(MessageTranslator.getItemName("lucky-block-name"));
+                    player.getInventory().getItemInHand().getItemMeta().getDisplayName().equals(MessageTranslator.getSettingsString("name"));
         else
             res = player.getInventory().getItemInMainHand().hasItemMeta() &&
-                    player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(MessageTranslator.getItemName("lucky-block-name"));
+                    player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(MessageTranslator.getSettingsString("name"));
 
         if(res)
             event.getBlock().setMetadata(StaticUtil.LUCKY_BLOCK_META_DATA, new FixedMetadataValue(MoreLuckyBlocks.getInstance(), StaticUtil.LUCKY_BLOCK_VALUE));

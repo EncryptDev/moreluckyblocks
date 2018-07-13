@@ -4,12 +4,18 @@
   "open-luckyblock": "You open the lucky block",
   "inventory-names": {
     "luckyblock-main": "&eLuckyBlock Manager",
-    "add-new-reward": "&eAdd new rewards"
+    "add-new-reward": "&eAdd new rewards",
+    "mob-list": "&eChoose your mov type"
   },
   "item-names": {
     "add-new-reward": "&eAdd new rewards",
     "add-structure": "&eAdd new structures",
     "add-new-mob": "&eAdd a new mob where spawn",
-    "add-new-item": "&eAdd a new item where drop"
-  }
+    "add-new-item": "&eAdd a new item where drop",
+    "add-command": "&eAdd a new command, where executed",
+    "page-next": "&eNext",
+    "page-back": "&eBack"
+  },
+  "added-handler": "You added a new handler",
+  "write-structure-name": "Write now the structure name, where loaded"
 }
