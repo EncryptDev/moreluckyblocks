@@ -96,6 +96,10 @@ public class MobSettings implements ConfigurationSerializable {
         this.handItems[1] = offHand;
     }
 
+    public String getCustomName() {
+        return customName;
+    }
+
     public void addPotionEffect(PotionEffect potionEffect) {
         if (this.potionEffects.contains(potionEffect))
             return;

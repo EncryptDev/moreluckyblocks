@@ -37,7 +37,6 @@ public class HandlerRegistry {
             return false;
         if(getHandlerRewardObject(iRewardHandler) != null)
             return false;
-        MLBFileManager mlbFileManager = new MLBFileManager("handler");
         customHandler.add(iRewardHandler);
         mlbFileManager.set("list", customHandler);
         return true;
@@ -54,4 +53,27 @@ public class HandlerRegistry {
         return customHandler.size() > 0 ? customHandler.get(random.nextInt(customHandler.size())) : null;
     }
 
+    public boolean unregisterCustomHandler(String handlerName) {
+        if(getHandlerByName(handlerName) == null)
+            return false;
+        IRewardHandler rewardHandler = getHandlerByName(handlerName);
+        customHandler.remove(rewardHandler);
+        mlbFileManager.set("list", customHandler);
+        return true;
+    }
+
+    public List<IRewardHandler> getCustomHandler() {
+        return customHandler;
+    }
+
+    public IRewardHandler getHandlerByName(String handlerName) {
+        for(IRewardHandler iRewardHandler : customHandler)
+            if(iRewardHandler.getHandlerName().equals(handlerName))
+                return iRewardHandler;
+        return null;
+    }
+
+    public static String newHandlerName() {
+        return "handler_" + (HandlerRegistry.getRegistry().customHandler.size() + 1);
+    }
 }

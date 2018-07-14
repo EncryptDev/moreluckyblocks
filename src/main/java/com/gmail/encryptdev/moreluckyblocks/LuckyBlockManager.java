@@ -1,6 +1,7 @@
 package com.gmail.encryptdev.moreluckyblocks;
 
 import com.gmail.encryptdev.moreluckyblocks.json.JsonLoader;
+import com.gmail.encryptdev.moreluckyblocks.reward.handler.IRewardHandler;
 import com.gmail.encryptdev.moreluckyblocks.util.ItemCreator;
 import com.gmail.encryptdev.moreluckyblocks.util.Log;
 import org.bukkit.Bukkit;
@@ -8,12 +9,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,13 +26,20 @@ public class LuckyBlockManager {
 
     public static final String CC_STRUCTURE_NAME = "cc_structure_name";
     public static final String CC_MOB_NAME = "cc_mob_name";
+    public static final String CC_REPEAT = "cc_repeat";
+    public static final String CC_ITEMS_ADD = "cc_items_add";
+    public static final String CC_HIGH = "cc_high";
 
     private Map<Player, String> chatCommands;
+    private Map<Player, List<ItemStack>> playerItems;
+    private Map<Player, IRewardHandler> handlerNeedRepeat;
     private JsonLoader jsonLoader;
 
     public LuckyBlockManager(JsonLoader jsonLoader) {
         this.jsonLoader = jsonLoader;
         this.chatCommands = new HashMap<>();
+        this.playerItems = new HashMap<>();
+        this.handlerNeedRepeat = new HashMap<>();
     }
 
     public void init() {
@@ -75,6 +85,14 @@ public class LuckyBlockManager {
             recipe.setIngredient(c, ingredientsMap.get(c));
 
         Bukkit.addRecipe(recipe);
+    }
+
+    public Map<Player, IRewardHandler> getHandlerNeedRepeat() {
+        return handlerNeedRepeat;
+    }
+
+    public Map<Player, List<ItemStack>> getPlayerItems() {
+        return playerItems;
     }
 
     public Map<Player, String> getChatCommands() {

@@ -26,11 +26,11 @@ public class CounterInventoryListener implements Listener {
     @EventHandler
     public void on(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
-        if (event.getInventory().getName().equals(String.format(MessageTranslator.getInventoryName("counter"), "Health"))) {
+        if (event.getInventory().getName().equals("§eCounter | Health")) {
             event.setCancelled(true);
             if (event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta())
                 return;
-            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(MessageTranslator.getItemName("finish-item"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals("§eFinish")) {
                 double amount = Double.parseDouble(event.getInventory().getItem(13).getItemMeta().getDisplayName().split(":")[1]);
                 mobCacheManager.getPlayerCache().get(player).setMaxHealth(amount);
                 mobCacheManager.getPlayerCache().get(player).setHealth(amount);
@@ -40,12 +40,12 @@ public class CounterInventoryListener implements Listener {
             if (!event.getCurrentItem().getItemMeta().getDisplayName().equals("§0")) {
                 set(event, "Health");
             }
-        } else if (event.getInventory().getName().equals(String.format(MessageTranslator.getInventoryName("counter"), "Speed"))
+        } else if (event.getInventory().getName().equals("§eCounter | Speed")
                 && !StaticUtil.is1_8()) {
             event.setCancelled(true);
             if (event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta())
                 return;
-            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(MessageTranslator.getItemName("finish-item"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals("§eFinish")) {
                 double amount = Double.parseDouble(event.getInventory().getItem(13).getItemMeta().getDisplayName().split(":")[1]);
                 mobCacheManager.getPlayerCache().get(player).setSpeed(amount);
                 AbstractInventory.openInventory(player, new ChooseAttributeInventory());
@@ -55,19 +55,19 @@ public class CounterInventoryListener implements Listener {
                 set(event, "Speed");
             }
 
-        } else if (event.getInventory().getName().equals(String.format(MessageTranslator.getInventoryName("counter"), "Attack Speed"))
+        } else if (event.getInventory().getName().equals("§eCounter | Attack Damage")
                 && !StaticUtil.is1_8()) {
             event.setCancelled(true);
             if (event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta())
                 return;
-            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(MessageTranslator.getItemName("finish-item"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals("§eFinish")) {
                 double amount = Double.parseDouble(event.getInventory().getItem(13).getItemMeta().getDisplayName().split(":")[1]);
                 mobCacheManager.getPlayerCache().get(player).setAttackSpeed(amount);
                 AbstractInventory.openInventory(player, new ChooseAttributeInventory());
                 return;
             }
             if (!event.getCurrentItem().getItemMeta().getDisplayName().equals("§0")) {
-                set(event, "Attack Speed");
+                set(event, "Attack Damage");
             }
         }
     }

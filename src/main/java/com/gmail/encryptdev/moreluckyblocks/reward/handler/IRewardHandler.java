@@ -12,6 +12,12 @@ public interface IRewardHandler<P> extends ConfigurationSerializable {
 
     void setLocation(Location paramLocation);
 
+    void setRepeat(int repeat);
+
+    int getRepeat();
+
     P getRewardObject();
+
+    String getHandlerName();
 
 }

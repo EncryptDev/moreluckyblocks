@@ -11,11 +11,11 @@ import org.bukkit.Material;
 public class PutInventory extends AbstractInventory {
 
     public PutInventory(PutType putType) {
-        super(String.format(MessageTranslator.getInventoryName("mob-put"), StaticUtil.enumToNormal(putType)), 9);
+        super("§ePut Inventory | " + StaticUtil.enumToNormal(putType), 9);
 
         fill();
         bukkitInventory.setItem(0, null);
-        bukkitInventory.setItem(8, ItemCreator.getItem(Material.EMERALD, MessageTranslator.getItemName("finish-item")));
+        bukkitInventory.setItem(8, ItemCreator.getItem(Material.EMERALD, "§eFinish"));
 
     }
 

@@ -3,7 +3,6 @@ package com.gmail.encryptdev.moreluckyblocks.listener.inventory.mob;
 import com.gmail.encryptdev.moreluckyblocks.inventory.AbstractInventory;
 import com.gmail.encryptdev.moreluckyblocks.inventory.PutInventory;
 import com.gmail.encryptdev.moreluckyblocks.inventory.mob.MobSettingsInventory;
-import com.gmail.encryptdev.moreluckyblocks.util.MessageTranslator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,20 +17,20 @@ public class ChooseArmorTypeInventoryListener implements Listener {
     @EventHandler
     public void on(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
-        if (event.getInventory().getName().equals(MessageTranslator.getInventoryName("mob-armor"))) {
+        if (event.getInventory().getName().equals("§eMob Armor")) {
             event.setCancelled(true);
             if (event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta())
                 return;
             String displayName = event.getCurrentItem().getItemMeta().getDisplayName();
-            if (displayName.equals(MessageTranslator.getItemName("mob-armor-inventory-helmet"))) {
+            if (displayName.equals("§eHelmet")) {
                 AbstractInventory.openInventory(player, new PutInventory(PutInventory.PutType.HELMET));
-            } else if (displayName.equals(MessageTranslator.getItemName("mob-armor-inventory-chestplate"))) {
+            } else if (displayName.equals("§eChestplate")) {
                 AbstractInventory.openInventory(player, new PutInventory(PutInventory.PutType.CHESTPLATE));
-            } else if (displayName.equals(MessageTranslator.getItemName("mob-armor-inventory-leggings"))) {
+            } else if (displayName.equals("§eLeggings")) {
                 AbstractInventory.openInventory(player, new PutInventory(PutInventory.PutType.LEGGINGS));
-            } else if (displayName.equals(MessageTranslator.getItemName("mob-armor-inventory-boots"))) {
+            } else if (displayName.equals("§eBoots")) {
                 AbstractInventory.openInventory(player, new PutInventory(PutInventory.PutType.BOOTS));
-            } else if (displayName.equals(MessageTranslator.getItemName("page-back"))) {
+            } else if (displayName.equals("§eBack")) {
                 AbstractInventory.openInventory(player, new MobSettingsInventory());
             }
         }

@@ -1,6 +1,7 @@
 package com.gmail.encryptdev.moreluckyblocks.structure;
 
 import com.gmail.encryptdev.moreluckyblocks.MoreLuckyBlocks;
+import com.google.common.io.Files;
 import com.sk89q.worldedit.*;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.data.DataException;
@@ -23,6 +24,14 @@ public class Structure implements ConfigurationSerializable {
 
     public Structure(String structureName) {
         this.structureName = structureName;
+
+        try {
+            Files.copy(new File("plugins//WorldEdit//schematics//" + structureName + ".schematic"), new File(MoreLuckyBlocks.getInstance().getDataFolder(),
+                    "/structures/" + structureName + ".schematic"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         this.file = new File(MoreLuckyBlocks.getInstance().getDataFolder(), "/structures/" + structureName + ".schematic");
     }
 

@@ -30,25 +30,19 @@ public class Reward {
     }
 
     public void useReward() {
-        this.useReward(0);
-    }
-
-    public void useReward(int repeat) {
         if (this.handler == null) {
             Log.warning("Can not use reward. RewardHandler is null");
             throw new NullPointerException();
         }
 
-        if (repeat != 0) {
-            if (repeat < 0)
-                throw new RuntimeException("The repeat amount, must be grater than 0. Repeat amount now: " + repeat);
+        if (handler.getRepeat() != 0) {
             new BukkitRunnable() {
 
                 private int counter = 0;
 
                 @Override
                 public void run() {
-                    if (counter >= repeat) {
+                    if (counter >= handler.getRepeat()) {
                         cancel();
                         return;
                     }

@@ -11,15 +11,21 @@ import java.util.Map;
  */
 public class SpawnMobHandler implements IRewardHandler<MobSettings> {
 
+    private String handlerName;
     private Location location;
     private MobSettings property;
+    private int repeat;
 
-    public SpawnMobHandler(MobSettings mobSettings) {
+    public SpawnMobHandler(String handlerName, MobSettings mobSettings) {
+        this.handlerName = handlerName;
         this.property = mobSettings;
+        this.repeat = 0;
     }
 
     public SpawnMobHandler(Map<String, Object> map) {
+        this.handlerName = (String) map.get("handlerName");
         this.property = (MobSettings) map.get("mobSettings");
+        this.repeat = (int) map.get("repeat");
     }
 
     @Override
@@ -38,9 +44,26 @@ public class SpawnMobHandler implements IRewardHandler<MobSettings> {
     }
 
     @Override
+    public void setRepeat(int repeat) {
+        this.repeat = repeat;
+    }
+
+    @Override
+    public int getRepeat() {
+        return repeat;
+    }
+
+    @Override
+    public String getHandlerName() {
+        return handlerName;
+    }
+
+    @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
+        map.put("handlerName", handlerName);
         map.put("mobSettings", property);
+        map.put("repeat", repeat);
         return map;
     }
 

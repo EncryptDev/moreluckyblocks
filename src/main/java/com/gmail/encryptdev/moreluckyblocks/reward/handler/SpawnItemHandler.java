@@ -4,27 +4,35 @@ import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by EncryptDev
  */
-public class SpawnItemHandler implements IRewardHandler<ItemStack> {
+public class SpawnItemHandler implements IRewardHandler<List<ItemStack>> {
 
+    private String handlerName;
     private Location location;
-    private ItemStack property;
+    private List<ItemStack> property;
+    private int repeat;
 
-    public SpawnItemHandler(ItemStack property) {
+    public SpawnItemHandler(String handlerName, List<ItemStack> property) {
+        this.handlerName = handlerName;
         this.property = property;
+        this.repeat = 0;
     }
 
     public SpawnItemHandler(Map<String, Object> map) {
-        this.property = (ItemStack) map.get("property");
+        this.handlerName = (String) map.get("handlerName");
+        this.property = (List<ItemStack>) map.get("property");
+        this.repeat = (int) map.get("repeat");
     }
 
     @Override
     public void handle() {
-        this.location.getWorld().dropItem(location, property);
+        for (ItemStack item : property)
+            this.location.getWorld().dropItem(location, item);
     }
 
     @Override
@@ -33,14 +41,31 @@ public class SpawnItemHandler implements IRewardHandler<ItemStack> {
     }
 
     @Override
-    public ItemStack getRewardObject() {
+    public List<ItemStack> getRewardObject() {
         return property;
+    }
+
+    @Override
+    public void setRepeat(int repeat) {
+        this.repeat = repeat;
+    }
+
+    @Override
+    public int getRepeat() {
+        return repeat;
+    }
+
+    @Override
+    public String getHandlerName() {
+        return handlerName;
     }
 
     @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
+        map.put("handlerName", handlerName);
         map.put("property", property);
+        map.put("repeat", repeat);
         return map;
     }
 

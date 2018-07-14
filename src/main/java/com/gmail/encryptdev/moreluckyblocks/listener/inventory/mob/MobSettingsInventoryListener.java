@@ -31,30 +31,32 @@ public class MobSettingsInventoryListener implements Listener {
 
     @EventHandler
     public void on(InventoryClickEvent event) {
-        if (event.getInventory().getName().equals(MessageTranslator.getInventoryName("mob-settings"))) {
+        if (event.getInventory().getName().equals("§eMob Settings")) {
             if (event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta())
                 return;
             String displayName = event.getCurrentItem().getItemMeta().getDisplayName();
             Player player = (Player) event.getWhoClicked();
 
-            if (displayName.equals(MessageTranslator.getItemName("mob-inventory-armor"))) {
+            if (displayName.equals("§eMob Armor")) {
                 AbstractInventory.openInventory(player, new ChooseArmorTypeInventory());
-            } else if (displayName.equals(MessageTranslator.getItemName("mob-inventory-weapons"))) {
+            } else if (displayName.equals("§eMob Weapons")) {
                 AbstractInventory.openInventory(player, new ChooseWeaponInventory());
-            } else if (displayName.equals(MessageTranslator.getItemName("mob-inventory-name"))) {
+            } else if (displayName.equals("§eMob Name")) {
                 player.closeInventory();
-                luckyBlockManager.getChatCommands().put(player, LuckyBlockManager.CC_MOB_NAME);
-                player.sendMessage(MessageTranslator.getMessage("write-mob-name"));
-            } else if (displayName.equals(MessageTranslator.getItemName("mob-inventory-attribute"))) {
+                if(!luckyBlockManager.getChatCommands().containsKey(player)) {
+                    luckyBlockManager.getChatCommands().put(player, LuckyBlockManager.CC_MOB_NAME);
+                    player.sendMessage(MessageTranslator.getMessage("write-mob-name"));
+                }
+            } else if (displayName.equals("§eMob Attribute")) {
                 AbstractInventory.openInventory(player, new ChooseAttributeInventory());
-            } else if (displayName.equals(MessageTranslator.getItemName("mob-inventory-potion"))) {
+            } else if (displayName.equals("§eMob Potion")) {
                 AbstractInventory.openInventory(player, new ChoosePotionInventory());
-            } else if (displayName.equals(MessageTranslator.getItemName("finish-item"))) {
+            } else if (displayName.equals("§eFinish")) {
                 MobSettings mobSettings = mobCacheManager.getPlayerCache().remove(player);
                 if (mobSettings != null) {
-                    boolean result = HandlerRegistry.getRegistry().registerCustomHandler(new SpawnMobHandler(mobSettings));
-                    if (result)
-                        player.sendMessage(MessageTranslator.getMessage("added-handler"));
+                    luckyBlockManager.getHandlerNeedRepeat().put(player, new SpawnMobHandler(HandlerRegistry.newHandlerName(), mobSettings));
+                    luckyBlockManager.getChatCommands().put(player, LuckyBlockManager.CC_REPEAT);
+                    player.sendMessage("§aWrite now the amount of repeat, for the handler (Write 0, for only one)");
                 }
                 player.closeInventory();
             }

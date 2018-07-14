@@ -19,17 +19,9 @@ public class MessageTranslator {
 
     public static String getMessage(String key) {
         String result = JSON_LOADER.getMessageFile().getJsonString(key);
-        if(result.equalsIgnoreCase("-"))
+        if (result.equalsIgnoreCase("-"))
             return "";
         return PREFIX + result;
-    }
-
-    public static String getInventoryName(String key) {
-        return translate((String) JSON_LOADER.getMessageFile().getJsonObject("inventory-names").get(key));
-    }
-
-    public static String getItemName(String key) {
-        return translate((String) JSON_LOADER.getMessageFile().getJsonObject("item-names").get(key));
     }
 
     public static String getSettingsString(String key) {

@@ -1,7 +1,7 @@
 package com.gmail.encryptdev.moreluckyblocks.inventory;
 
+import com.gmail.encryptdev.moreluckyblocks.reward.fallingblock.FallingBlockType;
 import com.gmail.encryptdev.moreluckyblocks.util.ItemCreator;
-import com.gmail.encryptdev.moreluckyblocks.util.MessageTranslator;
 import com.gmail.encryptdev.moreluckyblocks.util.StaticUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -31,6 +31,10 @@ public class ListInventory extends AbstractInventory {
             EntityType[] entityTypes = (EntityType[]) enumArray;
             for (EntityType et : entityTypes)
                 items.add(ItemCreator.getItem(Material.MONSTER_EGG, "§e" + StaticUtil.enumToNormal(et), 1, (byte) et.getTypeId()));
+        } else if(enumArray[0].getClass().equals(FallingBlockType.class)) {
+            FallingBlockType[] fallingBlockTypes = (FallingBlockType[]) enumArray;
+            for(FallingBlockType fbt : fallingBlockTypes)
+                items.add(ItemCreator.getItem(fbt.getMaterial(), "§e" + StaticUtil.enumToNormal(fbt)));
         }
 
         if (!items.isEmpty()) {
@@ -52,8 +56,8 @@ public class ListInventory extends AbstractInventory {
 
         }
 
-        bukkitInventory.setItem(45, ItemCreator.getItem(Material.ARROW, MessageTranslator.getItemName("page-back")));
-        bukkitInventory.setItem(53, ItemCreator.getItem(Material.ARROW, MessageTranslator.getItemName("page-next")));
+        bukkitInventory.setItem(45, ItemCreator.getItem(Material.ARROW, "§eBack"));
+        bukkitInventory.setItem(53, ItemCreator.getItem(Material.ARROW, "§eNext"));
 
     }
 

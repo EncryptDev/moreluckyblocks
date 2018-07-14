@@ -11,14 +11,14 @@ import org.bukkit.Material;
 public class MobSettingsInventory extends AbstractInventory {
 
     public MobSettingsInventory() {
-        super(MessageTranslator.getInventoryName("mob-settings"), 27);
+        super("§eMob Settings", 27);
 
         fill();
-        bukkitInventory.setItem(10, ItemCreator.getItem(Material.DIAMOND_CHESTPLATE, MessageTranslator.getItemName("mob-inventory-armor")));
-        bukkitInventory.setItem(11, ItemCreator.getItem(Material.DIAMOND_SWORD, MessageTranslator.getItemName("mob-inventory-weapons")));
-        bukkitInventory.setItem(12, ItemCreator.getItem(Material.NAME_TAG, MessageTranslator.getItemName("mob-inventory-name")));
-        bukkitInventory.setItem(13, ItemCreator.getItem(Material.APPLE, MessageTranslator.getItemName("mob-inventory-attribute")));
-        bukkitInventory.setItem(14, ItemCreator.getItem(Material.POTION, MessageTranslator.getItemName("mob-inventory-potion")));
-        bukkitInventory.setItem(26, ItemCreator.getItem(Material.DIAMOND, MessageTranslator.getItemName("finish-item")));
+        bukkitInventory.setItem(10, ItemCreator.getItem(Material.DIAMOND_CHESTPLATE, "§eMob Armor"));
+        bukkitInventory.setItem(11, ItemCreator.getItem(Material.DIAMOND_SWORD, "§eMob Weapons"));
+        bukkitInventory.setItem(12, ItemCreator.getItem(Material.NAME_TAG, "§eMob Name"));
+        bukkitInventory.setItem(13, ItemCreator.getItem(Material.APPLE, "§eMob Attribute"));
+        bukkitInventory.setItem(14, ItemCreator.getItem(Material.POTION, "§eMob Potion"));
+        bukkitInventory.setItem(26, ItemCreator.getItem(Material.DIAMOND, "§eFinish"));
     }
 }

@@ -5,10 +5,7 @@ import com.gmail.encryptdev.moreluckyblocks.json.JsonLoader;
 import com.gmail.encryptdev.moreluckyblocks.listener.ChatListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.LuckyBlockBreakListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.LuckyBlockPlaceListener;
-import com.gmail.encryptdev.moreluckyblocks.listener.inventory.AddNewRewardInventoryListener;
-import com.gmail.encryptdev.moreluckyblocks.listener.inventory.CounterInventoryListener;
-import com.gmail.encryptdev.moreluckyblocks.listener.inventory.ListInventoryListener;
-import com.gmail.encryptdev.moreluckyblocks.listener.inventory.PutInventoryListener;
+import com.gmail.encryptdev.moreluckyblocks.listener.inventory.*;
 import com.gmail.encryptdev.moreluckyblocks.listener.inventory.mob.*;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobCacheManager;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobSettings;
@@ -34,6 +31,7 @@ public class MoreLuckyBlocks extends JavaPlugin {
     private LuckyBlockManager luckyBlockManager;
     private MobCacheManager mobCacheManager;
     private StructureLoader structureLoader;
+    private boolean isWorldEditLoaded;
 
     @Override
     public void onEnable() {
@@ -43,6 +41,8 @@ public class MoreLuckyBlocks extends JavaPlugin {
             saveResource("messages.json", false);
         if (!new File("settings.json").exists())
             saveResource("settings.json", false);
+
+        this.isWorldEditLoaded = Bukkit.getPluginManager().getPlugin("WorldEdit") != null;
 
         this.jsonLoader = new JsonLoader();
         this.jsonLoader.load();
@@ -71,7 +71,7 @@ public class MoreLuckyBlocks extends JavaPlugin {
         registerRewardHandler(SpawnItemHandler.class);
         registerRewardHandler(SpawnMobHandler.class);
         registerRewardHandler(StructureHandler.class);
-        registerRewardHandler(ExecuteCommandHandler.class);
+        registerRewardHandler(FallingBlockHandler.class);
 
         ConfigurationSerialization.registerClass(Structure.class);
         ConfigurationSerialization.registerClass(MobSettings.class);
@@ -84,7 +84,7 @@ public class MoreLuckyBlocks extends JavaPlugin {
         pluginManager.registerEvents(new MobSettingsInventoryListener(mobCacheManager, luckyBlockManager), this);
         pluginManager.registerEvents(new ChatListener(luckyBlockManager, mobCacheManager), this);
         pluginManager.registerEvents(new AddNewRewardInventoryListener(luckyBlockManager), this);
-        pluginManager.registerEvents(new ListInventoryListener(mobCacheManager), this);
+        pluginManager.registerEvents(new ListInventoryListener(mobCacheManager, luckyBlockManager), this);
         pluginManager.registerEvents(new PutInventoryListener(mobCacheManager), this);
         pluginManager.registerEvents(new MobSettingsInventoryListener(mobCacheManager, luckyBlockManager), this);
         pluginManager.registerEvents(new ChooseArmorTypeInventoryListener(), this);
@@ -92,10 +92,15 @@ public class MoreLuckyBlocks extends JavaPlugin {
         pluginManager.registerEvents(new ChooseAttributeInventoryListener(), this);
         pluginManager.registerEvents(new CounterInventoryListener(mobCacheManager), this);
         pluginManager.registerEvents(new ChoosePotionInventoryListener(mobCacheManager), this);
+        pluginManager.registerEvents(new HandlerManagerInventoryListener(), this);
     }
 
     public void registerRewardHandler(Class<? extends IRewardHandler> aClass) {
         ConfigurationSerialization.registerClass(aClass);
+    }
+
+    public boolean isWorldEditLoaded() {
+        return isWorldEditLoaded;
     }
 
     public static MoreLuckyBlocks getInstance() {

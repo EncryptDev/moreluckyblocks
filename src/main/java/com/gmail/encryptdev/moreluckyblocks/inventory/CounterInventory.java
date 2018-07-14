@@ -10,7 +10,7 @@ import org.bukkit.Material;
 public class CounterInventory extends AbstractInventory {
 
     public CounterInventory(String name) {
-        super(String.format(MessageTranslator.getInventoryName("counter"), name), 27);
+        super("§eCounter | " + name, 27);
 
         bukkitInventory.setItem(9, ItemCreator.getItem(Material.ARROW, "§5§l-25"));
         bukkitInventory.setItem(10, ItemCreator.getItem(Material.ARROW, "§5§l-10"));
@@ -22,6 +22,6 @@ public class CounterInventory extends AbstractInventory {
         bukkitInventory.setItem(16, ItemCreator.getItem(Material.ARROW, "§5§l+10"));
         bukkitInventory.setItem(17, ItemCreator.getItem(Material.ARROW, "§5§l+25"));
 
-        bukkitInventory.setItem(26, ItemCreator.getItem(Material.DIAMOND, MessageTranslator.getItemName("finish-item")));
+        bukkitInventory.setItem(26, ItemCreator.getItem(Material.DIAMOND, "§eFinish"));
     }
 }

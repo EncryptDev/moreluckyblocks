@@ -4,7 +4,6 @@ import com.gmail.encryptdev.moreluckyblocks.inventory.AbstractInventory;
 import com.gmail.encryptdev.moreluckyblocks.inventory.mob.MobSettingsInventory;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobCacheManager;
 import com.gmail.encryptdev.moreluckyblocks.util.ItemCreator;
-import com.gmail.encryptdev.moreluckyblocks.util.MessageTranslator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,7 +29,7 @@ public class ChoosePotionInventoryListener implements Listener {
     public void on(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getInventory().getName().equals(MessageTranslator.getInventoryName("mob-potion"))) {
+        if (event.getInventory().getName().equals("§eMob Potions")) {
             event.setCancelled(true);
             if (event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta())
                 return;
@@ -79,7 +78,7 @@ public class ChoosePotionInventoryListener implements Listener {
                     ItemStack item = ItemCreator.changeLore(event.getCurrentItem(), Arrays.asList("§eStatus: §4OFF"));
                     event.getInventory().setItem(3, item);
                 }
-            } else if (displayName.equals(MessageTranslator.getItemName("page-back"))) {
+            } else if (displayName.equals("§eBack")) {
                 AbstractInventory.openInventory(player, new MobSettingsInventory());
             }
         }

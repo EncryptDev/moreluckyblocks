@@ -5,16 +5,19 @@ import com.gmail.encryptdev.moreluckyblocks.util.ItemCreator;
 import com.gmail.encryptdev.moreluckyblocks.util.MessageTranslator;
 import org.bukkit.Material;
 
+import java.util.Arrays;
+
 /**
  * Created by EncryptDev
  */
 public class ChooseWeaponInventory extends AbstractInventory {
 
     public ChooseWeaponInventory() {
-        super(MessageTranslator.getInventoryName("mob-weapons"), 9);
+        super("§eMob Weapons", 9);
         fill();
-        bukkitInventory.setItem(0, ItemCreator.getItem(Material.GOLD_SWORD, MessageTranslator.getItemName("mob-weapon-inventory-main-hand")));
-        bukkitInventory.setItem(1, ItemCreator.getItem(Material.GOLD_HOE, MessageTranslator.getItemName("mob-weapon-inventory-off-hand")));
-        bukkitInventory.setItem(8, ItemCreator.getItem(Material.ARROW, MessageTranslator.getItemName("page-back")));
+        bukkitInventory.setItem(0, ItemCreator.getItem(Material.GOLD_SWORD, "§eMain Hand"));
+        bukkitInventory.setItem(1, ItemCreator.getItem(Material.GOLD_HOE, "§eOff Hand",
+                Arrays.asList("§4Only available in version 1.9 or higher")));
+        bukkitInventory.setItem(8, ItemCreator.getItem(Material.ARROW, "§eBack"));
     }
 }
