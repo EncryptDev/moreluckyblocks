@@ -6,7 +6,6 @@ import com.gmail.encryptdev.moreluckyblocks.listener.ChatListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.LuckyBlockBreakListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.LuckyBlockPlaceListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.inventory.*;
-import com.gmail.encryptdev.moreluckyblocks.listener.inventory.mob.*;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobCacheManager;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobSettings;
 import com.gmail.encryptdev.moreluckyblocks.reward.handler.*;
@@ -87,11 +86,7 @@ public class MoreLuckyBlocks extends JavaPlugin {
         pluginManager.registerEvents(new ListInventoryListener(mobCacheManager, luckyBlockManager), this);
         pluginManager.registerEvents(new PutInventoryListener(mobCacheManager), this);
         pluginManager.registerEvents(new MobSettingsInventoryListener(mobCacheManager, luckyBlockManager), this);
-        pluginManager.registerEvents(new ChooseArmorTypeInventoryListener(), this);
-        pluginManager.registerEvents(new ChooseWeaponInventoryListener(), this);
-        pluginManager.registerEvents(new ChooseAttributeInventoryListener(), this);
         pluginManager.registerEvents(new CounterInventoryListener(mobCacheManager), this);
-        pluginManager.registerEvents(new ChoosePotionInventoryListener(mobCacheManager), this);
         pluginManager.registerEvents(new HandlerManagerInventoryListener(), this);
     }
 

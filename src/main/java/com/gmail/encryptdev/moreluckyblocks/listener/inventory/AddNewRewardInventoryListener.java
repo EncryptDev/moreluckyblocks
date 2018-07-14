@@ -10,6 +10,7 @@ import com.gmail.encryptdev.moreluckyblocks.util.EntityTypeUtil;
 import com.gmail.encryptdev.moreluckyblocks.util.MessageTranslator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -36,7 +37,7 @@ public class AddNewRewardInventoryListener implements Listener {
             String displayName = itemStack.getItemMeta().getDisplayName();
             if (displayName.equals("§eAdd a new structure handler")) {
                 player.closeInventory();
-                if(MoreLuckyBlocks.getInstance().isWorldEditLoaded()) {
+                if (MoreLuckyBlocks.getInstance().isWorldEditLoaded()) {
                     if (!luckyBlockManager.getChatCommands().containsKey(player)) {
                         luckyBlockManager.getChatCommands().put(player, LuckyBlockManager.CC_STRUCTURE_NAME);
                         player.sendMessage(MessageTranslator.getMessage("write-structure-name"));

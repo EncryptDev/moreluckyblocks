@@ -1,12 +1,12 @@
 package com.gmail.encryptdev.moreluckyblocks.listener.inventory;
 
 import com.gmail.encryptdev.moreluckyblocks.inventory.AbstractInventory;
-import com.gmail.encryptdev.moreluckyblocks.inventory.mob.ChooseAttributeInventory;
+import com.gmail.encryptdev.moreluckyblocks.inventory.MobSettingsInventory;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobCacheManager;
-import com.gmail.encryptdev.moreluckyblocks.util.MessageTranslator;
 import com.gmail.encryptdev.moreluckyblocks.util.StaticUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -34,7 +34,7 @@ public class CounterInventoryListener implements Listener {
                 double amount = Double.parseDouble(event.getInventory().getItem(13).getItemMeta().getDisplayName().split(":")[1]);
                 mobCacheManager.getPlayerCache().get(player).setMaxHealth(amount);
                 mobCacheManager.getPlayerCache().get(player).setHealth(amount);
-                AbstractInventory.openInventory(player, new ChooseAttributeInventory());
+                AbstractInventory.openInventory(player, new MobSettingsInventory());
                 return;
             }
             if (!event.getCurrentItem().getItemMeta().getDisplayName().equals("§0")) {
@@ -48,7 +48,7 @@ public class CounterInventoryListener implements Listener {
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals("§eFinish")) {
                 double amount = Double.parseDouble(event.getInventory().getItem(13).getItemMeta().getDisplayName().split(":")[1]);
                 mobCacheManager.getPlayerCache().get(player).setSpeed(amount);
-                AbstractInventory.openInventory(player, new ChooseAttributeInventory());
+                AbstractInventory.openInventory(player, new MobSettingsInventory());
                 return;
             }
             if (!event.getCurrentItem().getItemMeta().getDisplayName().equals("§0")) {
@@ -63,7 +63,7 @@ public class CounterInventoryListener implements Listener {
             if (event.getCurrentItem().getItemMeta().getDisplayName().equals("§eFinish")) {
                 double amount = Double.parseDouble(event.getInventory().getItem(13).getItemMeta().getDisplayName().split(":")[1]);
                 mobCacheManager.getPlayerCache().get(player).setAttackSpeed(amount);
-                AbstractInventory.openInventory(player, new ChooseAttributeInventory());
+                AbstractInventory.openInventory(player, new MobSettingsInventory());
                 return;
             }
             if (!event.getCurrentItem().getItemMeta().getDisplayName().equals("§0")) {

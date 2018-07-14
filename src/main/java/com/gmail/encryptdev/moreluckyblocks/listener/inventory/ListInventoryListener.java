@@ -3,7 +3,7 @@ package com.gmail.encryptdev.moreluckyblocks.listener.inventory;
 import com.gmail.encryptdev.moreluckyblocks.LuckyBlockManager;
 import com.gmail.encryptdev.moreluckyblocks.inventory.AbstractInventory;
 import com.gmail.encryptdev.moreluckyblocks.inventory.ListInventory;
-import com.gmail.encryptdev.moreluckyblocks.inventory.mob.MobSettingsInventory;
+import com.gmail.encryptdev.moreluckyblocks.inventory.MobSettingsInventory;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobCacheManager;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobSettings;
 import com.gmail.encryptdev.moreluckyblocks.reward.fallingblock.FallingBlockType;
@@ -15,6 +15,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 

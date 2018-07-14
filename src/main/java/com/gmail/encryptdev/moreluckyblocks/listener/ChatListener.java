@@ -2,7 +2,7 @@ package com.gmail.encryptdev.moreluckyblocks.listener;
 
 import com.gmail.encryptdev.moreluckyblocks.LuckyBlockManager;
 import com.gmail.encryptdev.moreluckyblocks.inventory.AbstractInventory;
-import com.gmail.encryptdev.moreluckyblocks.inventory.mob.MobSettingsInventory;
+import com.gmail.encryptdev.moreluckyblocks.inventory.MobSettingsInventory;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobCacheManager;
 import com.gmail.encryptdev.moreluckyblocks.reward.handler.*;
 import com.gmail.encryptdev.moreluckyblocks.structure.Structure;
@@ -10,6 +10,7 @@ import com.gmail.encryptdev.moreluckyblocks.util.MessageTranslator;
 import com.gmail.encryptdev.moreluckyblocks.util.StaticUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.ItemStack;

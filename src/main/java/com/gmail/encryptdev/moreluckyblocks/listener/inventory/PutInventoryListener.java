@@ -1,13 +1,13 @@
 package com.gmail.encryptdev.moreluckyblocks.listener.inventory;
 
 import com.gmail.encryptdev.moreluckyblocks.inventory.AbstractInventory;
+import com.gmail.encryptdev.moreluckyblocks.inventory.MobSettingsInventory;
 import com.gmail.encryptdev.moreluckyblocks.inventory.PutInventory;
-import com.gmail.encryptdev.moreluckyblocks.inventory.mob.ChooseArmorTypeInventory;
-import com.gmail.encryptdev.moreluckyblocks.inventory.mob.ChooseWeaponInventory;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobCacheManager;
 import com.gmail.encryptdev.moreluckyblocks.util.StaticUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -66,27 +66,27 @@ public class PutInventoryListener implements Listener {
                 switch (slot) {
                     case 0:
                         mobCacheManager.getPlayerCache().get(player).setHelmet(item);
-                        AbstractInventory.openInventory(player, new ChooseArmorTypeInventory());
+                        AbstractInventory.openInventory(player, new MobSettingsInventory());
                         break;
                     case 1:
                         mobCacheManager.getPlayerCache().get(player).setChestplate(item);
-                        AbstractInventory.openInventory(player, new ChooseArmorTypeInventory());
+                        AbstractInventory.openInventory(player, new MobSettingsInventory());
                         break;
                     case 2:
                         mobCacheManager.getPlayerCache().get(player).setLeggings(item);
-                        AbstractInventory.openInventory(player, new ChooseArmorTypeInventory());
+                        AbstractInventory.openInventory(player, new MobSettingsInventory());
                         break;
                     case 3:
                         mobCacheManager.getPlayerCache().get(player).setBoots(item);
-                        AbstractInventory.openInventory(player, new ChooseArmorTypeInventory());
+                        AbstractInventory.openInventory(player, new MobSettingsInventory());
                         break;
                     case 4:
                         mobCacheManager.getPlayerCache().get(player).setMainHand(item);
-                        AbstractInventory.openInventory(player, new ChooseWeaponInventory());
+                        AbstractInventory.openInventory(player, new MobSettingsInventory());
                         break;
                     case 5:
                         mobCacheManager.getPlayerCache().get(player).setOffHand(item);
-                        AbstractInventory.openInventory(player, new ChooseWeaponInventory());
+                        AbstractInventory.openInventory(player, new MobSettingsInventory());
                         break;
                 }
             }

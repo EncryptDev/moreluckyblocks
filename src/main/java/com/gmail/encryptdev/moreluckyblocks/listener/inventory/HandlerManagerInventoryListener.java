@@ -3,11 +3,11 @@ package com.gmail.encryptdev.moreluckyblocks.listener.inventory;
 import com.gmail.encryptdev.moreluckyblocks.inventory.AbstractInventory;
 import com.gmail.encryptdev.moreluckyblocks.inventory.HandlerManagerInventory;
 import com.gmail.encryptdev.moreluckyblocks.reward.handler.HandlerRegistry;
-import com.gmail.encryptdev.moreluckyblocks.reward.handler.IRewardHandler;
 import com.gmail.encryptdev.moreluckyblocks.util.StaticUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
@@ -45,7 +45,7 @@ public class HandlerManagerInventoryListener implements Listener {
                 String handlerName = stripped.toLowerCase().replace(" ", "_");
                 boolean result = HandlerRegistry.getRegistry().unregisterCustomHandler(handlerName);
                 player.closeInventory();
-                if(result)
+                if (result)
                     player.sendMessage("§aYou removed the handler successfully");
                 else
                     player.sendMessage("§aHandler can not be removed. Handler doesn't exist in the cache list. Please contact me");

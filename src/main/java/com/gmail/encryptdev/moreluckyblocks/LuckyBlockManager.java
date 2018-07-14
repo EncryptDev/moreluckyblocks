@@ -81,7 +81,7 @@ public class LuckyBlockManager {
 
         ShapedRecipe recipe;
 
-        if(StaticUtil.is1_8())
+        if (!StaticUtil.VERSION.equalsIgnoreCase("v1_12_R1"))
             recipe = new ShapedRecipe(ItemCreator.getItem(Material.getMaterial((String) customRecipeObj.get("output")),
                     ChatColor.translateAlternateColorCodes('&', (String) customRecipeObj.get("name"))));
         else

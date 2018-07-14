@@ -17,7 +17,7 @@ public class LuckyBlockPlaceListener implements Listener {
     @EventHandler
     public void on(BlockPlaceEvent event) {
         Player player = event.getPlayer();
-        boolean res;
+        boolean res = false;
 
         if (StaticUtil.is1_8())
             res = player.getInventory().getItemInHand().hasItemMeta() &&
