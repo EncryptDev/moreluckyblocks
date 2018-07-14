@@ -21,11 +21,5 @@ Only one permission: "luckyblocks.*", because only one command for configurate t
 ## How work it?
 Create a few handler, and then craft a lucky block. (Recipe can you show in the settings.json), place him and break the block
 
-## Help?
-Join my Discord: *Discord*
-Or write me here a PM
-Wiki for Developer: WIKI. 
-
 ## Note:
 If you want to use the structure then install worldedit
-Please report the bugs, via PM or via discord, or in the discussion
