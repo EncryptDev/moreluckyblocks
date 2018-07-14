@@ -33,11 +33,6 @@ public class SpawnItemHandler implements IRewardHandler<ItemStack> {
     }
 
     @Override
-    public Class<ItemStack> getProperty() {
-        return ItemStack.class;
-    }
-
-    @Override
     public ItemStack getRewardObject() {
         return property;
     }

@@ -6,8 +6,11 @@ import com.gmail.encryptdev.moreluckyblocks.listener.ChatListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.LuckyBlockBreakListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.LuckyBlockPlaceListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.inventory.AddNewRewardInventoryListener;
+import com.gmail.encryptdev.moreluckyblocks.listener.inventory.CounterInventoryListener;
 import com.gmail.encryptdev.moreluckyblocks.listener.inventory.ListInventoryListener;
-import com.gmail.encryptdev.moreluckyblocks.mob.MobEquipment;
+import com.gmail.encryptdev.moreluckyblocks.listener.inventory.PutInventoryListener;
+import com.gmail.encryptdev.moreluckyblocks.listener.inventory.mob.*;
+import com.gmail.encryptdev.moreluckyblocks.mob.MobCacheManager;
 import com.gmail.encryptdev.moreluckyblocks.mob.MobSettings;
 import com.gmail.encryptdev.moreluckyblocks.reward.handler.*;
 import com.gmail.encryptdev.moreluckyblocks.structure.Structure;
@@ -29,6 +32,7 @@ public class MoreLuckyBlocks extends JavaPlugin {
 
     private JsonLoader jsonLoader;
     private LuckyBlockManager luckyBlockManager;
+    private MobCacheManager mobCacheManager;
     private StructureLoader structureLoader;
 
     @Override
@@ -46,6 +50,7 @@ public class MoreLuckyBlocks extends JavaPlugin {
         this.luckyBlockManager.init();
         this.structureLoader = new StructureLoader();
         this.structureLoader.init();
+        this.mobCacheManager = new MobCacheManager();
 
         this.registerSerializableClasses();
 
@@ -56,10 +61,6 @@ public class MoreLuckyBlocks extends JavaPlugin {
         Log.info("Developer: EncryptDev");
         Log.info("Version: " + this.getDescription().getVersion());
 
-    }
-
-    public StructureLoader getStructureLoader() {
-        return structureLoader;
     }
 
     public JsonLoader getJsonLoader() {
@@ -74,16 +75,23 @@ public class MoreLuckyBlocks extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(Structure.class);
         ConfigurationSerialization.registerClass(MobSettings.class);
-        ConfigurationSerialization.registerClass(MobEquipment.class);
     }
 
     private void registerListener() {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new LuckyBlockPlaceListener(), this);
         pluginManager.registerEvents(new LuckyBlockBreakListener(), this);
-        pluginManager.registerEvents(new ChatListener(luckyBlockManager), this);
+        pluginManager.registerEvents(new MobSettingsInventoryListener(mobCacheManager, luckyBlockManager), this);
+        pluginManager.registerEvents(new ChatListener(luckyBlockManager, mobCacheManager), this);
         pluginManager.registerEvents(new AddNewRewardInventoryListener(luckyBlockManager), this);
-        pluginManager.registerEvents(new ListInventoryListener(), this);
+        pluginManager.registerEvents(new ListInventoryListener(mobCacheManager), this);
+        pluginManager.registerEvents(new PutInventoryListener(mobCacheManager), this);
+        pluginManager.registerEvents(new MobSettingsInventoryListener(mobCacheManager, luckyBlockManager), this);
+        pluginManager.registerEvents(new ChooseArmorTypeInventoryListener(), this);
+        pluginManager.registerEvents(new ChooseWeaponInventoryListener(), this);
+        pluginManager.registerEvents(new ChooseAttributeInventoryListener(), this);
+        pluginManager.registerEvents(new CounterInventoryListener(mobCacheManager), this);
+        pluginManager.registerEvents(new ChoosePotionInventoryListener(mobCacheManager), this);
     }
 
     public void registerRewardHandler(Class<? extends IRewardHandler> aClass) {

@@ -29,11 +29,6 @@ public class StructureHandler implements IRewardHandler<Structure> {
     }
 
     @Override
-    public Class<Structure> getProperty() {
-        return Structure.class;
-    }
-
-    @Override
     public Structure getRewardObject() {
         return structure;
     }

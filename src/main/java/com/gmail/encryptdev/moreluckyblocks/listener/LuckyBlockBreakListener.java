@@ -18,12 +18,13 @@ public class LuckyBlockBreakListener implements Listener {
         if (event.getBlock().hasMetadata(StaticUtil.LUCKY_BLOCK_META_DATA)) {
             Reward reward = new Reward(event.getBlock().getLocation());
             IRewardHandler handler = HandlerRegistry.getRegistry().getRandomHandler();
+            System.out.println(handler);
             if(handler == null) {
                 event.setCancelled(true);
                 event.getPlayer().sendMessage("§cERROR > No handler found. Create handler, use /lb");
                 return;
             }
-            reward.setHandler(HandlerRegistry.getRegistry().getRandomHandler());
+            reward.setHandler(handler);
             reward.useReward();
         }
     }

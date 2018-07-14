@@ -2,8 +2,6 @@ package com.gmail.encryptdev.moreluckyblocks.reward.handler;
 
 import com.gmail.encryptdev.moreluckyblocks.mob.MobSettings;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,25 +9,22 @@ import java.util.Map;
 /**
  * Created by EncryptDev
  */
-public class SpawnMobHandler implements IRewardHandler<EntityType> {
+public class SpawnMobHandler implements IRewardHandler<MobSettings> {
 
     private Location location;
-    private MobSettings mobSettings;
-    private EntityType property;
+    private MobSettings property;
 
-    public SpawnMobHandler(EntityType property) {
-        this.property = property;
+    public SpawnMobHandler(MobSettings mobSettings) {
+        this.property = mobSettings;
     }
 
-    public void setMobSettings(MobSettings mobSettings) {
-        this.mobSettings = mobSettings;
+    public SpawnMobHandler(Map<String, Object> map) {
+        this.property = (MobSettings) map.get("mobSettings");
     }
 
     @Override
     public void handle() {
-        Entity spawnedEntity = location.getWorld().spawnEntity(location, property);
-        if (mobSettings != null)
-            this.mobSettings.set(spawnedEntity);
+        property.build(location);
     }
 
     @Override
@@ -38,24 +33,19 @@ public class SpawnMobHandler implements IRewardHandler<EntityType> {
     }
 
     @Override
-    public Class<EntityType> getProperty() {
-        return EntityType.class;
-    }
-
-    @Override
-    public EntityType getRewardObject() {
+    public MobSettings getRewardObject() {
         return property;
     }
 
     @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
-        map.put("entityType", property.toString());
+        map.put("mobSettings", property);
         return map;
     }
 
     public static SpawnMobHandler deserialize(Map<String, Object> map) {
-        return new SpawnMobHandler(EntityType.valueOf((String) map.get("entityType")));
+        return new SpawnMobHandler(map);
     }
 
 

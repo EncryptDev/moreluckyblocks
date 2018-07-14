@@ -72,6 +72,13 @@ public class ItemCreator {
         return newStack;
     }
 
+    public static ItemStack changeLore(ItemStack itemStack, List<String> newLore) {
+        ItemMeta meta =  itemStack.getItemMeta().clone();
+        meta.setLore(newLore);
+        itemStack.setItemMeta(meta);
+        return itemStack.clone();
+    }
+
     public static ItemStack getSkull(String name, OfflinePlayer ownerPlayer, List<String> lore) {
         return getSkull(name, ownerPlayer, lore, null);
     }

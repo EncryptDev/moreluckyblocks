@@ -1,11 +1,18 @@
 {
-  "_comment": "To disable the message just change the message to \"-\"",
+  "_comment": "To disable the message just change the message to \"-\" (Item or Inventory names can not be disabled)",
   "prefix": "&6&lLuckyBlocks &7>> &c",
   "open-luckyblock": "You open the lucky block",
   "inventory-names": {
     "luckyblock-main": "&eLuckyBlock Manager",
     "add-new-reward": "&eAdd new rewards",
-    "mob-list": "&eChoose your mov type"
+    "mob-list": "&eChoose your mov type",
+    "mob-settings": "&eMob Settings",
+    "mob-armor": "&eMob Armor",
+    "mob-weapons": "&eMob Weapons",
+    "mob-attribute": "&eMob Attributes",
+    "mob-potion": "&eMob Potion",
+    "mob-put": "&ePut Inventory | %s",
+    "counter": "&eCounter | %s"
   },
   "item-names": {
     "add-new-reward": "&eAdd new rewards",
@@ -14,8 +21,24 @@
     "add-new-item": "&eAdd a new item where drop",
     "add-command": "&eAdd a new command, where executed",
     "page-next": "&eNext",
-    "page-back": "&eBack"
+    "page-back": "&eBack",
+    "mob-inventory-armor": "&eMob Armor",
+    "mob-inventory-weapons": "&eMob Weapons",
+    "mob-inventory-name": "&eMob Name",
+    "mob-inventory-attribute": "&eMob Attributes",
+    "mob-inventory-potion": "&eMob Potions",
+    "mob-armor-inventory-helmet": "&eHelmet",
+    "mob-armor-inventory-chestplate": "&eChestplate",
+    "mob-armor-inventory-leggings": "&eLeggings",
+    "mob-armor-inventory-boots": "&eBoots",
+    "mob-weapon-inventory-main-hand": "&eMain Hand",
+    "mob-weapon-inventory-off-hand": "&eOff Hand",
+    "mob-attribute-inventory-health": "&eHealth",
+    "mob-attribute-inventory-speed": "&eSpeed",
+    "mob-attribute-inventory-attack-speed": "&eAttack Speed",
+    "finish-item": "&eFinish"
   },
   "added-handler": "You added a new handler",
-  "write-structure-name": "Write now the structure name, where loaded"
+  "write-structure-name": "Write now the structure name, where loaded",
+  "write-mob-name": "Write now the mob name"
 }

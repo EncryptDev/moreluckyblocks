@@ -45,7 +45,7 @@ public class HandlerRegistry {
 
     private Object getHandlerRewardObject(IRewardHandler iRewardHandler) {
         for(IRewardHandler handler : customHandler)
-            if(handler.equals(iRewardHandler))
+            if(handler.getRewardObject().equals(iRewardHandler.getRewardObject()))
                 return handler.getRewardObject();
         return null;
     }

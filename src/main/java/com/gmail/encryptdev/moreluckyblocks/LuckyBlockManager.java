@@ -22,6 +22,7 @@ import java.util.Map;
 public class LuckyBlockManager {
 
     public static final String CC_STRUCTURE_NAME = "cc_structure_name";
+    public static final String CC_MOB_NAME = "cc_mob_name";
 
     private Map<Player, String> chatCommands;
     private JsonLoader jsonLoader;

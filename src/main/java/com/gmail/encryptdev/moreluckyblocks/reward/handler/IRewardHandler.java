@@ -12,8 +12,6 @@ public interface IRewardHandler<P> extends ConfigurationSerializable {
 
     void setLocation(Location paramLocation);
 
-    Class<P> getProperty();
-
     P getRewardObject();
 
 }

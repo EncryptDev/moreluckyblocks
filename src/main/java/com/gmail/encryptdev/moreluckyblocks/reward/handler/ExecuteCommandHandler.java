@@ -32,11 +32,6 @@ public class ExecuteCommandHandler implements IRewardHandler<String> {
     }
 
     @Override
-    public Class<String> getProperty() {
-        return String.class;
-    }
-
-    @Override
     public String getRewardObject() {
         return command;
     }

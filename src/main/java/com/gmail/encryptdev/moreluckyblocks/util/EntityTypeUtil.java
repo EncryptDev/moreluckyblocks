@@ -7,11 +7,11 @@ import org.bukkit.entity.EntityType;
  */
 public class EntityTypeUtil {
 
-    public static final EntityType[] ENTITY_TYPES_1_8;
-    public static final EntityType[] ENTITY_TYPES_1_9;
-    public static final EntityType[] ENTITY_TYPES_1_10;
-    public static final EntityType[] ENTITY_TYPES_1_11;
-    public static final EntityType[] ENTITY_TYPES_1_12;
+    private static final EntityType[] ENTITY_TYPES_1_8;
+    private static final EntityType[] ENTITY_TYPES_1_9;
+    private static final EntityType[] ENTITY_TYPES_1_10;
+    private static final EntityType[] ENTITY_TYPES_1_11;
+    private static final EntityType[] ENTITY_TYPES_1_12;
 
     static {
         ENTITY_TYPES_1_8 = new EntityType[]{EntityType.CREEPER, EntityType.SKELETON, EntityType.SPIDER, EntityType.GIANT, EntityType.ZOMBIE,
