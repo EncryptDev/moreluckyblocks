@@ -4,6 +4,7 @@ import com.gmail.encryptdev.moreluckyblocks.json.JsonLoader;
 import com.gmail.encryptdev.moreluckyblocks.reward.handler.IRewardHandler;
 import com.gmail.encryptdev.moreluckyblocks.util.ItemCreator;
 import com.gmail.encryptdev.moreluckyblocks.util.Log;
+import com.gmail.encryptdev.moreluckyblocks.util.StaticUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -78,8 +79,15 @@ public class LuckyBlockManager {
         }
 
 
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("custom_workbench"), ItemCreator.getItem(Material.getMaterial((String) customRecipeObj.get("output")),
-                ChatColor.translateAlternateColorCodes('&', (String) customRecipeObj.get("name"))));
+        ShapedRecipe recipe;
+
+        if(StaticUtil.is1_8())
+            recipe = new ShapedRecipe(ItemCreator.getItem(Material.getMaterial((String) customRecipeObj.get("output")),
+                    ChatColor.translateAlternateColorCodes('&', (String) customRecipeObj.get("name"))));
+        else
+            recipe = new ShapedRecipe(NamespacedKey.minecraft("custom_workbench"), ItemCreator.getItem(Material.getMaterial((String) customRecipeObj.get("output")),
+                    ChatColor.translateAlternateColorCodes('&', (String) customRecipeObj.get("name"))));
+
         recipe.shape(rows);
         for (Character c : ingredientsMap.keySet())
             recipe.setIngredient(c, ingredientsMap.get(c));
