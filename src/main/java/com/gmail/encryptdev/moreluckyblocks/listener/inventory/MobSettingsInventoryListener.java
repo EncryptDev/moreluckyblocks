@@ -54,6 +54,8 @@ public class MobSettingsInventoryListener implements Listener {
                     luckyBlockManager.getHandlerNeedRepeat().put(player, new SpawnMobHandler(HandlerRegistry.newHandlerName(), mobSettings));
                     luckyBlockManager.getChatCommands().put(player, LuckyBlockManager.CC_REPEAT);
                     player.sendMessage("§aWrite now the amount of repeat, for the handler (Write 0, for only one)");
+                    if(!StaticUtil.VERSION.equals("v1_12_R1"))
+                        player.sendMessage("§aIgnore the error in the console. I don't know why this error come, but the error is not terrible");
                 }
                 player.closeInventory();
             } else if (displayName.equals("§eHelmet")) {
@@ -92,7 +94,7 @@ public class MobSettingsInventoryListener implements Listener {
                 player.closeInventory();
                 event.setCancelled(true);
                 AbstractInventory.openInventory(player, new CounterInventory("Attack Damage"));
-            } else if (displayName.equals("§eRegeneration")) {
+            } else if (displayName.equals("§ePotionEffect Regeneration")) {
                 event.setCancelled(true);
 
                 String status = event.getCurrentItem().getItemMeta().getLore().get(0).split(":")[1].trim();
@@ -104,7 +106,7 @@ public class MobSettingsInventoryListener implements Listener {
                     event.getInventory().setItem(event.getSlot(), ItemCreator.changeLore(event.getCurrentItem(), Arrays.asList("§eStatus: §4§lOFF")));
                 }
 
-            } else if (displayName.equals("§eInvisibility")) {
+            } else if (displayName.equals("§ePotionEffect Invisibility")) {
                 event.setCancelled(true);
                 String status = event.getCurrentItem().getItemMeta().getLore().get(0).split(":")[1].trim();
                 if (status.equals("§4§lOFF")) {
@@ -114,7 +116,7 @@ public class MobSettingsInventoryListener implements Listener {
                     mobCacheManager.getPlayerCache().get(player).removePotionEffect(PotionEffectType.INVISIBILITY);
                     event.getInventory().setItem(event.getSlot(), ItemCreator.changeLore(event.getCurrentItem(), Arrays.asList("§eStatus: §4§lOFF")));
                 }
-            } else if (displayName.equals("§eStrength")) {
+            } else if (displayName.equals("§ePotionEffect Strength")) {
                 event.setCancelled(true);
                 String status = event.getCurrentItem().getItemMeta().getLore().get(0).split(":")[1].trim();
                 if (status.equals("§4§lOFF")) {
@@ -124,7 +126,7 @@ public class MobSettingsInventoryListener implements Listener {
                     mobCacheManager.getPlayerCache().get(player).removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
                     event.getInventory().setItem(event.getSlot(), ItemCreator.changeLore(event.getCurrentItem(), Arrays.asList("§eStatus: §4§lOFF")));
                 }
-            } else if (displayName.equals("§eSpeed")) {
+            } else if (displayName.equals("§ePotionEffect Speed")) {
                 event.setCancelled(true);
                 String status = event.getCurrentItem().getItemMeta().getLore().get(0).split(":")[1].trim();
                 if (status.equals("§4§lOFF")) {

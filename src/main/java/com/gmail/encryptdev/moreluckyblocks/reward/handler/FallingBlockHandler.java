@@ -1,6 +1,7 @@
 package com.gmail.encryptdev.moreluckyblocks.reward.handler;
 
 import com.gmail.encryptdev.moreluckyblocks.reward.fallingblock.FallingBlockType;
+import com.gmail.encryptdev.moreluckyblocks.util.StaticUtil;
 import org.bukkit.Location;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.material.MaterialData;
@@ -35,10 +36,10 @@ public class FallingBlockHandler implements IRewardHandler<FallingBlockType> {
 
     @Override
     public void handle() {
-        if(fallingBlockType == FallingBlockType.PRIMED_TNT) {
+        if (fallingBlockType == FallingBlockType.PRIMED_TNT) {
             this.location.getWorld().spawn(this.location.clone().add(0, high, 0), TNTPrimed.class);
         } else {
-            this.location.getWorld().spawnFallingBlock(this.location.clone().add(0, high, 0), new MaterialData(fallingBlockType.getMaterial()));
+            this.location.getWorld().spawnFallingBlock(this.location.clone().add(0, high, 0), fallingBlockType.getMaterial(), (byte) 0);
         }
     }
 
